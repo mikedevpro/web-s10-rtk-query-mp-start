@@ -11,13 +11,24 @@ export const quotesApi = createApi({
          providesQuotes: ['Quotes']  
       }),
       createQuote: build.mutation({
-
+         query: quote => ({
+           url: 'quotes',
+           method: postMessage,
+           body: quote
+         })
       }),
       toggleFake: build.mutation({
-
+         query: ({ id, quote }) => ({
+           url: `quotes/${id}`,
+           method: 'PUT',
+           body: quote
+        }),
       }),
       deleteQuote: build.mutation({
-
+         query: ({ id }) => ({
+           url: `quotes/${id}`,
+           method: 'DELETE',
+        }),
       }),
    })
 })
