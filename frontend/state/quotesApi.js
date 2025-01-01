@@ -8,27 +8,30 @@ export const quotesApi = createApi({
     endpoints: build => ({
        getQuotes: build.query({
          query: () => 'quotes',
-         providesQuotes: ['Quotes']  
+         providesTags: ['Quotes'],  
       }),
       createQuote: build.mutation({
          query: quote => ({
            url: 'quotes',
-           method: postMessage,
+           method: 'POST',
            body: quote
-         })
+         }),
+         invalidatesTags: ['Quotes'],
       }),
       toggleFake: build.mutation({
          query: ({ id, quote }) => ({
            url: `quotes/${id}`,
            method: 'PUT',
-           body: quote
+           body: quote,
         }),
+        invalidatesTags: ['Quotes'],
       }),
       deleteQuote: build.mutation({
          query: ({ id }) => ({
            url: `quotes/${id}`,
            method: 'DELETE',
         }),
+        invalidatesTags: ['Quotes'],
       }),
    })
 })
