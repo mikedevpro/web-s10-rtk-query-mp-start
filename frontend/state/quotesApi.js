@@ -21,3 +21,7 @@ export const quotesApi = createApi({
       }),
    })
 })
+
+export const {
+  useGetQuotesQuery, useCreateQuoteMutation, useToggleFakeMutation, useDeleteQuoteMutation
+} = quotesApi
